@@ -1,0 +1,126 @@
+@import "variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  color: $WhiteColor;
+}
+
+html {
+  font-size: 10px;
+  background: $BlackColor;
+}
+
+body {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul,
+li,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $MainColor;
+}
+
+/* 스크롤바의 폭 너비 */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: $MainColor; /* 스크롤바 색상 */
+  border-radius: 10px; /* 스크롤바 둥근 테두리 */
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba($color: $WhiteColor, $alpha: 0.3);
+}
+
+input,
+textarea,
+button {
+  border: none;
+  outline: none;
+  background: $BlackColor;
+  border: 0.4rem solid $WhiteColor;
+}
+
+// button
+.button {
+  width: 100%;
+  background: $MainColor;
+  color: $BlackColor;
+  border: 0.4rem solid $MainColor;
+  height: 6rem;
+  font-weight: bold;
+  font-size: 2.4rem;
+  cursor: pointer;
+  &:hover {
+    background: darken($color: $MainColor, $amount: 10%);
+  }
+
+  &:disabled {
+    background: rgba($color: $WhiteColor, $alpha: 0.6);
+    color: $BlackColor;
+    border: 0.4rem solid rgba($color: $WhiteColor, $alpha: 0.6);
+    cursor: not-allowed;
+  }
+}
+
+// input[date]
+.input-date {
+  width: 100%;
+  height: 6rem;
+  font-size: 2.4rem;
+  padding: 1.2rem;
+  box-sizing: border-box;
+  color-scheme: dark;
+  &:focus {
+    border: 0.4rem solid $MainColor;
+  }
+}
+
+// input[text]
+.input-text {
+  width: 100%;
+  height: 6rem;
+  font-size: 2.4rem;
+  padding: 1.2rem;
+  box-sizing: border-box;
+  &:focus {
+    border: 0.4rem solid $MainColor;
+  }
+}
+
+// textarea
+.input-textarea {
+  width: 100%;
+  height: 12rem;
+  font-size: 2.4rem;
+  padding: 1.2rem;
+  box-sizing: border-box;
+  &:focus {
+    border: 0.4rem solid $MainColor;
+  }
+}
+
+// input[checkbox]
+.input-checkbox {
+  width: 3.2rem;
+  height: 3.2rem;
+  &[type="checkbox"] {
+    accent-color: $MainColor;
+  }
+}
