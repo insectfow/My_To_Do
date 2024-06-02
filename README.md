@@ -1,7 +1,3 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Useage
 
 - Node v20.11.1
@@ -11,6 +7,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm run server`
+
+json server를 켜고 Mock api를 사용합니다.
 
 ### `npm start`
 

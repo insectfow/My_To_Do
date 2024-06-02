@@ -82,6 +82,7 @@ button {
 // input[date]
 .input-date {
   width: 100%;
+  max-width: 24rem;
   height: 6rem;
   font-size: 2.4rem;
   padding: 1.2rem;
@@ -118,6 +119,7 @@ button {
 
 // input[checkbox]
 .input-checkbox {
+  min-width: 3.2rem;
   width: 3.2rem;
   height: 3.2rem;
   &[type="checkbox"] {

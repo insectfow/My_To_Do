@@ -1,70 +1,46 @@
-import { FC, useCallback, useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { FC, useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../layouts/Layout";
 import SectionContainer from "../components/common/SectionContainer";
 import Button from "../components/common/Button";
-
-import { getTodo, updateTodo } from "../lib/todo";
-import { TodoProps } from "../types/types";
+import { createTodo } from "../lib/todo";
 
 const TodoPage: FC = () => {
-  const params = useParams();
-  const todoId = params.id;
-  const focusRef = useRef<HTMLInputElement>(null);
-  const [title, setTitle] = useState("");
-  const [todo, setTodo] = useState<TodoProps | null>(null);
-  const [content, setContent] = useState("");
-  const [dueDate, setDueDate] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchTodo = async (id: string) => {
-      if (!id) return;
+  const focusRef = useRef<HTMLInputElement>(null);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [dueDate, setDueDate] = useState("");
 
-      try {
-        const todo = await getTodo(id);
-        setTitle(todo.title);
-        setContent(todo.content);
-        setDueDate(todo.dueDate);
-        setTodo(todo);
-      } catch (err) {
-        navigate("/error");
-      }
-    };
-
-    if (todoId) {
-      fetchTodo(todoId);
-    }
-    focusRef.current?.focus();
-  }, [todoId, focusRef, navigate]);
+  const isSaveButtonDisabled = useMemo(() => {
+    return !title || !content;
+  }, [title, content]);
 
   useEffect(() => {
     focusRef.current?.focus();
   }, [focusRef]);
 
-  const handleSave = useCallback(() => {
-    if (!todo) return;
-    try {
-      updateTodo({
-        ...todo,
-        title,
-        content,
-        dueDate,
-      });
+  const handleSave = async () => {
+    let newTodo;
+    const id = Math.floor(Math.random() * 1000000);
+    newTodo = { title, content, dueDate, completed: false, id: id.toString() };
 
-      alert("Todo updated successfully!");
+    try {
+      await createTodo(newTodo);
+      alert("Todo created successfully!");
 
       // Clear the input fields
       setTitle("");
       setContent("");
       setDueDate("");
+
       navigate("/");
     } catch (error) {
-      alert("Failed to update todo.");
+      alert("Failed to create todo.");
     }
-  }, [todo, title, content, dueDate, navigate]);
+  };
 
-  const isSaveButtonDisabled = !title || !content;
   return (
     <Layout title={"To Do"}>
       <SectionContainer sectionTitle="제목">
@@ -92,11 +68,12 @@ const TodoPage: FC = () => {
         />
       </SectionContainer>
       <Button
-        buttonText={"Update"}
+        buttonText={"Save"}
         onClick={handleSave}
         disabled={isSaveButtonDisabled}
       />
     </Layout>
   );
 };
+
 export default TodoPage;

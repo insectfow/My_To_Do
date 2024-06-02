@@ -5,7 +5,7 @@ interface ButtonProps {
   disabled: boolean;
   buttonClassName?: string;
   buttonContainerClassName?: string;
-  buttonText: string;
+  buttonText: string | React.ReactNode;
 }
 
 const Button: FC<ButtonProps> = ({

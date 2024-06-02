@@ -8,8 +8,15 @@ export interface HeaderProps {
 }
 
 export interface TodoProps {
+  id: string;
   title: string;
   content: string;
   dueDate: string;
   completed: boolean;
+}
+
+export interface WeatherData {
+  date: string;
+  weather: string;
+  temperature: string;
 }

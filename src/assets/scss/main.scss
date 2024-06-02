@@ -89,9 +89,6 @@
 .weekly-todo-contents {
   .weekly-todo-button {
     width: 100%;
-    background: $MainColor;
-    color: $BlackColor;
-    border: 0.4rem solid $MainColor;
     height: 6rem;
     font-weight: bold;
     font-size: 2.4rem;
@@ -116,26 +113,40 @@
       align-items: flex-start;
       flex-direction: column;
       gap: 0.8rem;
-      font-size: 2.4rem;
       min-height: 3.2rem;
 
+      .todo-duedate {
+        font-size: 1.6rem;
+        color: rgba($color: $WhiteColor, $alpha: 0.7);
+      }
+      .todo-title {
+        border: none;
+        font-size: 2.4rem;
+        text-align: left;
+        cursor: pointer;
+      }
+
       &.overdue {
-        > span {
+        .todo-title,
+        .todo-duedate {
           color: red;
         }
       }
     }
     &.completed {
-      > strong {
+      .todo-title {
         text-decoration: line-through;
       }
     }
     .button-container {
+      min-width: 3.2rem;
+      width: 3.2rem;
+      height: 3.2rem;
       margin-bottom: 0;
       margin-left: auto;
       .delete-button {
-        width: 3.2rem;
-        height: 3.2rem;
+        width: 100%;
+        height: 100%;
       }
     }
 
@@ -143,4 +154,25 @@
       border-bottom: 0;
     }
   }
+}
+
+// erorr, loading
+.error-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.4rem;
+  border: 0.4rem solid red;
+  box-sizing: border-box;
+  height: 38rem;
+}
+
+.loading-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.4rem;
+  border: 0.4rem solid $WhiteColor;
+  box-sizing: border-box;
+  height: 38rem;
 }
